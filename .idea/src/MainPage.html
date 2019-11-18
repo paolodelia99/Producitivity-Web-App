@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Productivity Web App</title>
+    <link rel="stylesheet" href="../resources/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+<header id="main-header">
+    <div class="container" data-aos="fade-down" data-aos-duration="1200">
+        <div class="row">
+            <div id="col-md-6">
+                <h1 id="header-title">My Productivity App</h1>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="close-modal" class="close">&times;</span>
+            <h2 contenteditable="true" id="event-title">Event Title</h2>
+        </div>
+        <div class="modal-body">
+            <div id="new-event-date-container">
+                <div id="starting-date" class="date-hour-container">
+                    <div id="initial-date" class="event-date" contenteditable="true"></div>
+                    <div id="initial-hour-container" class="event-date">
+                      <div class="hour-container" id="starting-hour"></div>
+                      :
+                      <div class="minutes-container" id="starting-minutes"></div>
+                    </div>
+                </div>
+                <div id="ending-date" class="date-hour-container">
+                    <div id="end-hour-container" class="event-date">
+                      <div class="hour-container" id="ending-hour"></div>
+                      :
+                      <div class="minutes-container" id="ending-minutes"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="event-location" class="property-event-container">
+                <div id="location-field" class="event-field">Location:</div>
+                <div id="location" class="event-attributes" contenteditable="true">Insert location</div>
+            </div>
+            <div id="event-category" class="property-event-container">
+                <div class="event-field">Category</div>
+                <div class="list-category-container">
+                    <select id="lists-categories" class="event-attributes">
+                        <option class="category" value="work" selected="selected">Work</option>
+                        <option class="category" value="sport">Sport</option>
+                        <option class="category" value="social-life">Social Life</option>
+                        <option class="category" value="fun">Fun</option>
+                    </select>
+                </div>
+            </div>
+            <div id="reminder" class="property-event-container">
+                <div class="event-field">Remind Me: </div>
+                <div class="event-attributes">
+                    <select id="lists-categories" class="event-attributes">
+                        <option class="category" value="work">5</option>
+                        <option class="category" value="sport">10</option>
+                        <option class="category" value="social-life">15</option>
+                        <option class="category" value="fun">30</option>
+                    </select>
+                </div>
+            </div>
+            <div id="event-content-container" class="property-event-container">
+                <div class="event-field">Description of the event:</div>
+                <div class="event-attributes" id="event-content" contenteditable="true">Add description</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div id="create-event-btn">Create Event</div>
+        </div>
+    </div>
+
+</div>
+<div class="big-wrapper" id="content-container">
+    <div class="container" id="big-calendar-container" data-aos="fade-right" data-aos-duration="1200">
+        <header>
+            <h1>Calendar</h1>
+        </header>
+        <div id="calendar-container">
+            <div id="calendar-header">
+                <div id="backward">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="backward" class="svg-inline--fa fa-backward fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"/></svg>
+                </div>
+                <span id="calendar-month-year"></span>
+                <div id="fordward">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="forward" class="svg-inline--fa fa-forward fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"/></svg>
+                </div>
+                <div id="create-event">+ Create an Event</div>
+            </div>
+            <div id="calendar-dates">
+
+            </div>
+        </div>
+        <script src="calendarDom.js"></script>
+    </div>
+    <div class="container" id="tasks-big-continer" data-aos="fade-left" data-aos-duration="1200">
+        <header>
+            <h1>Tasks</h1>
+        </header>
+        <div id="main-tasks-components-container">
+            <header>
+                <h2>Your Lists</h2>
+            </header>
+            <div class="control-tasks-div" id="lists-selector">
+                <select id="lists-choicebox">
+                    <option class="list" value="all-tasks">Your Tasks</option>
+                    <option class="list" value="long-term-goals">Long Term Tasks</option>
+                    <option class="list" value="short-term-goals">Short Term Tasks</option>
+                    <option class="list" value="maintainance-tasks">Maintainance Tasks</option>
+                </select>
+            </div>
+            <div class="control-tasks-div" id="create-new-task"><div id="create-new-task-img">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg>
+                </div>
+                Create New task
+            </div>
+            <div id="tasks-container">
+                <div id="no-completed-tasks-container">
+                    <div class="task-div" contenteditable="false">
+                        <div class="task-check" ><input type="checkbox" class="check-box long-term-goals" value="Bugs" onclick="checkTaskCompleted()"></div>
+                        <div class="task-text" contenteditable="false">Fix all the Bugs</div>
+                    </div>
+                    <div class="task-div" contenteditable="false">
+                        <div class="task-check" ><input type="checkbox" class="check-box long-term-goals" value="Other Browrsers issues" onclick="checkTaskCompleted()"></div>
+                        <div class="task-text" contenteditable="false">Fix all the Bugs in the other Browser</div>
+                    </div>
+                    <div class="task-div" contenteditable="false">
+                        <div class="task-check">
+                            <input type="checkbox" class="check-box short-term-goals" value="Read more" onclick="checkTaskCompleted()">
+                        </div>
+                        <div class="task-text" contenteditable="false">Upload on github</div>
+                    </div>
+                    <div class="task-div" contenteditable="false">
+                        <div class="task-check"><input type="checkbox" class="check-box short-term-goals" value="Meditate more" onclick="checkTaskCompleted()"></div>
+                        <div class="task-text" contenteditable="false">ReDesign the modal box</div>
+                    </div>
+                </div>
+                <div id="completed-tasks">
+                    <header>
+                        <h3 id="number-of-done-tasks">Completed Tasks </h3>
+                    </header>
+                    <div id="completed-tasks-container">
+                        <div class="completed-tasks-div">
+                            <div class="completed-task-check"><input type="checkbox" class="checked-completed-tasks" onclick="removeCheckTask()" checked value="Get Out Trash"></div>
+                            <div class="completed-task-text" contenteditable="false">Get Out trash</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="tasksDom.js"></script>
+    </div>
+    <div class="container" id="notes" data-aos="slide-up" data-aos-duration="1200">
+        <header>
+            <h1>Your Notes</h1>
+        </header>
+        <div class="create-note-container" id="createNoteContainer">
+          <div class="initial-div" id="new-note-creator">
+            <div class="check-list-btn" id="add-todo-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-ul" class="svg-inline--fa fa-list-ul fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M48 48a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm0 160a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm0 160a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm448 16H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"/></svg>
+            </div>
+            <div class="text-initial-div" id="insert-note-div">Insert the note..</div>
+          </div>
+          <div class="hidden-div" id="note-creator">
+            <div class="row-container">
+              <div class="col-container">
+                <div class="note-title" contenteditable="true" id="new-note-title">Title</div>
+                <div id="close-note-btn">X</div>
+              </div>
+              <div class="note-content" contenteditable="true" id="new-note-content">Insert your note</div>
+                <div class="create-note-btn" id="new-note-btn">Create Note</div>
+            </div>
+          </div>
+            <div class="hidden-div" id="add-todo">
+                <div class="row-container" id="todo-row-container">
+                    <div class="col-container">
+                        <div class="note-title" contenteditable="true" id="new-todo-title">Title</div>
+                        <div id="close-note-btn2">X</div>
+                    </div>
+                    <div class="ul-todo-container" id="ul-todo-div">
+                        <ul class="todo-ul" id="new-ul-todo-list" contenteditable="true">
+                            <li class="todo-li">Insert a todo</li>
+                        </ul>
+                    </div>
+                    <div class="create-note-btn" id="new-note-btn2">Create Note</div>
+                </div>
+            </div>
+        </div>
+        <div class="notes-container" id="notes-Container" contenteditable="false">
+          <div class="note-container text-note" data-aos="zoom-in" data-aos-duration="1200">
+            <header>
+              <h3 contenteditable="false" >How to become an AI expert</h3>
+            </header>
+            <p contenteditable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Cras dui leo, imperdiet vitae posuere in, pretium eget felis.
+              In at sapien laoreet, vehicula lectus nec, luctus sem.
+              Quisque euismod mauris in auctor dignissim.
+              Praesent eu urna placerat, tristique tortor in, auctor magna.
+              Morbi fermentum arcu dapibus erat fermentum, in semper ante
+              placerat</p>
+          </div>
+          <div class="note-container li-note" contenteditable="false" data-aos="zoom-in" data-aos-duration="1200">
+            <header>
+              <h3 contenteditable="false">Thing to do on Sunday</h3>
+            </header>
+            <ul contenteditable="false">
+              <li>Get the trash out</li>
+              <li>Do the dishes</li>
+              <li>Prepare the food for the dog</li>
+            </ul>
+          </div>
+          <div class="note-container li-note" contenteditable="false" data-aos="zoom-in" data-aos-duration="1200">
+            <header>
+              <h3 contenteditable="false">Next Goals</h3>
+            </header>
+            <ul contenteditable="false">
+              <li>Read more books</li>
+              <li>Learn ML</li>
+              <li>Meditate more</li>
+            </ul>
+          </div>
+          <div class="note-container text-note" contenteditable="false" data-aos="zoom-in" data-aos-duration="1200">
+            <header>
+              <h3 contenteditable="false" class="note-h3-title">Big Project for my YT Channel</h3>
+            </header>
+            <p contenteditable="false" class="note-p-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Cras dui leo, imperdiet vitae posuere in, pretium eget felis.
+              In at sapien laoreet, vehicula lectus nec, luctus sem.
+              Quisque euismod mauris in auctor dignissim.
+              Praesent eu urna placerat, tristique tortor in, auctor magna.
+              Morbi fermentum arcu dapibus erat fermentum, in semper ante
+              placerat</p>
+          </div>
+            <div class="note-container text-note" contenteditable="false" data-aos="zoom-in" data-aos-duration="1200">
+                <header>
+                    <h3 contenteditable="false">How to build an app with Flutter</h3>
+                </header>
+                <p contenteditable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cras dui leo, imperdiet vitae posuere in, pretium eget felis.
+                    In at sapien laoreet, vehicula lectus nec, luctus sem.
+                    Quisque euismod mauris in auctor dignissim.
+                    Praesent eu urna placerat, tristique tortor in, auctor magna.
+                    Morbi fermentum arcu dapibus erat fermentum, in semper ante
+                    placerat</p>
+            </div>
+            <div class="note-container li-note" contenteditable="false" data-aos="zoom-in" data-aos-duration="1200">
+                <header>
+                    <h3 contenteditable="false">Next projects to do</h3>
+                </header>
+                <ul contenteditable="false">
+                    <li>Learn MERN stack</li>
+                    <li>Learn Phyton</li>
+                    <li>Build a full application</li>
+                </ul>
+            </div>
+            <div class="note-container li-note" contenteditable="false" data-aos="zoom-in" data-aos-duration="1200">
+                <header>
+                    <h3 contenteditable="false">Next possible trips</h3>
+                </header>
+                <ul contenteditable="false">
+                    <li>Holland</li>
+                    <li>Belgium</li>
+                    <li>Berlin & Hamburg</li>
+                </ul>
+            </div>
+        </div>
+        <script src="noteDom.js"></script>
+    </div>
+</div>
+<script src="bigController.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
