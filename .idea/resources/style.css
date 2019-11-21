@@ -262,6 +262,9 @@ body {
     color: rgba(47,169,219,0.95);
 }
 
+.fas{
+  color: inherit;
+}
 #create-event{
     font-weight: bold;
     border: 1px solid #2980b9;
